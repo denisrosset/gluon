@@ -1,5 +1,6 @@
 global gluon_loaded;
 if (~exist('gluon_loaded')) || (~isequal(gluon_loaded, 1))
+    tic;
     disp('Gluon: adding JARs to path');
     javaaddpath([pwd '/lib/scala-compiler-2.12.1.jar']);
     javaaddpath([pwd '/lib/scala-library-2.12.1.jar']);
@@ -16,5 +17,5 @@ if (~exist('gluon_loaded')) || (~isequal(gluon_loaded, 1))
     disp('Gluon: checking');
     assert(i.call(2) == 4);
     gluon_loaded = 1;
-    disp('Gluon: loaded');
+    disp(sprintf('Gluon: loaded in %.2f seconds.', toc));
 end
