@@ -14,9 +14,10 @@ trait ArgAdapterInstances {
     case s: Short => s.toDouble
     case c: Char => c.toDouble
     case i: Int => i.toDouble
-    case l: Long if l.isValidDouble => throw new AdapterException("Cannot be represented exactly as Double")
-    case l: Long => l.toDouble
+    case l: Long if l.isValidDouble => l.toDouble
+    case l: Long => throw new AdapterException("Cannot be represented exactly as Double")
     case bi: BigInteger if bi.isValidDouble => bi.toDouble
+    case bi: BigInteger => throw new AdapterException("Cannot be represented exactly as Double")
     case f: Float => f.toDouble
     case d: Double => d.toDouble
     case s: String => try { s.toDouble } catch { case e: Exception => throw new AdapterException(e) }
@@ -49,7 +50,6 @@ trait ArgAdapterInstances {
     case _: Float | _: Double => throw new AdapterException("Not an integer")
     case a => throw new AdapterException()
   }
-
 
   implicit def seq[S[X] <: Seq[X], A:ArgAdapter](implicit cbf: CanBuildFrom[Seq[A], A, S[A]]): ArgAdapter[S[A]] =
     ArgAdapter[S[A]]("Seq["+ArgAdapter[A].name+"]") {

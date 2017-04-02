@@ -63,7 +63,7 @@ object Interface {
   def apply[R:GenResAdapter](funName: String)(f: => R): Interface = new Interface {
     @varargs def call(args: Any*): Any = {
       try {
-        GenResAdapter[R].from(f())
+        GenResAdapter[R].from(f)
       } catch {
         case e: Exception => throw new InterfaceCallException(funName, Seq(), args, e)
       }
