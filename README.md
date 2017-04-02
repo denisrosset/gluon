@@ -6,7 +6,7 @@ The following code implements the sum of elements of a vector.
 
 ```matlab
 function res = sumI(vec)
-i = com.faacets.gluon.Interface.compileNoCache({
+i = com.faacets.gluon.Interface.compile({
     'import com.faacets.gluon._'
     'Interface[Seq[Double], Double]("sum", "seq") {'
     'seq => seq.sum'
