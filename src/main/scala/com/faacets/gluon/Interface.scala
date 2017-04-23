@@ -11,7 +11,8 @@ import scala.annotation.varargs
   * @param args     Provided values for the arguments
   * @param cause    Cause of the failure (exception which caused the rethrow)
   */
-class InterfaceCallException(funName: String, argNames: Seq[String], args: Seq[Any], cause: Exception) extends Exception(s"Exception in call to $funName(${InterfaceCallException.formatArgs(argNames, args)})", cause)
+class InterfaceCallException(funName: String, argNames: Seq[String], args: Seq[Any], cause: Exception)
+  extends Exception(s"Exception in call to $funName(${InterfaceCallException.formatArgs(argNames, args)})", cause)
 
 object InterfaceCallException {
 
