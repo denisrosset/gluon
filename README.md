@@ -1,8 +1,10 @@
+[![Build Status](https://api.travis-ci.org/denisrosset/gluon.png)](https://travis-ci.org/denisrosset/gluon/)
+
 # Gluon - a library for Scala interoperability with dynamic languages
 
 Gluon enables users to write Scala interface code in a robust manner.
 
-The following code implements the sum of elements of a vector.
+The following Matlab code implements the sum of elements of a vector.
 
 ```matlab
 function res = sumI(vec)
