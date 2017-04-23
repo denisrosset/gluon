@@ -1,7 +1,11 @@
 package com.faacets.gluon
 
-/**
-  * Created by denis on 02.04.17.
+/** Exception type to throw when the conversion is unsuccesful; is wrapped by the adapter
+  * in a [[ArgAdapterException]] or [[ResAdapterException]]
+  *
+  * @param message   Error message describing the issue
+  *
+  * @param cause     Optional wrapped exception or null
   */
 class AdapterException(message: String, cause: Throwable) extends IllegalArgumentException(message, cause) {
 
