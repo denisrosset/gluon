@@ -35,6 +35,8 @@ class ArgAdapter[+A](val name: String, f: Any => A) {
   /** Converts the argument provided in a standard Java type to the Scala type A. */
   def to(arg: Any): A = f(arg)
 
+  def map[B](newName: String)(g: A => B): ArgAdapter[B] = new ArgAdapter[B](newName, f andThen g)
+
 }
 
 object ArgAdapter extends ArgAdapterInstances {

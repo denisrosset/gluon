@@ -23,6 +23,8 @@ class ResAdapter[-A, +R](val name: String, f: A => R) {
   /** Converts the result in the Scala type A to the standard Java type R. */
   def from(res: A): R = f(res)
 
+  def contramap[B](newName: String)(g: B => A): ResAdapter[B, R] = new ResAdapter[B, R](newName, g andThen f)
+
 }
 
 object ResAdapter extends ResAdapterInstances {
