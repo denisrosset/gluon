@@ -13,7 +13,7 @@ import scala.reflect.ClassTag
   * @param arg      Value provided from the external code
   * @param cause    Exception thrown during the conversion
   */
-class ArgAdapterException(a: ArgAdapter[_], argIndex: Int, argName: String, arg: Any, cause: AdapterException) extends IllegalArgumentException(s"Argument $argName (#$argIndex): cannot adapt to ${a.name} the given $arg of class ${arg.getClass.getName}", cause)
+class ArgAdapterException(a: ArgAdapter[_], argIndex: Int, argName: String, arg: Any, cause: AdapterException) extends IllegalArgumentException(s"Argument $argName (#$argIndex): cannot adapt to ${a.name} the given ${Printer(arg)} of class ${arg.getClass.getName}", cause)
 
 /** Adapts an argument provided as a standard Java type to the type expected by the Scala code. */
 class ArgAdapter[+A](val name: String, f: Any => A) {

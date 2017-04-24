@@ -18,7 +18,7 @@ object InterfaceCallException {
 
   /** Formats a pair of name-arg lists in the manner "x1 = 1, x2 = 4, ..." */
   def formatArgs(argNames: Seq[String], args: Seq[Any]): String =
-    (argNames zip args).map { case (n, a) => s"$n = $a" }.mkString(", ")
+    (argNames zip args).map { case (n, a) => s"${Printer(n)} = ${Printer(a)}" }.mkString(", ")
 
 }
 
@@ -81,7 +81,7 @@ object Interface {
     * @tparam R      Return type
     */
   def apply[A0:ArgAdapter, R:GenResAdapter](funName: String, name0: String)
-                                        (f: A0 => R): Interface = new Interface {
+                                           (f: A0 => R): Interface = new Interface {
     @varargs def call(args: Any*): Any = {
       try {
         val a0 = ArgAdapter[A0].argTo(0, name0, args(0))
@@ -104,7 +104,7 @@ object Interface {
     * @tparam R      Return type
     */
   def apply[A0:ArgAdapter, A1:ArgAdapter, R:GenResAdapter](funName: String, name0: String, name1: String)
-                                                       (f: (A0, A1) => R): Interface = new Interface {
+                                                          (f: (A0, A1) => R): Interface = new Interface {
 
     @varargs def call(args: Any*): Any = {
       try {
@@ -119,7 +119,7 @@ object Interface {
   }
 
   def apply[A0:ArgAdapter, A1:ArgAdapter, A2:ArgAdapter, R:GenResAdapter](funName: String, name0: String, name1: String, name2: String)
-                                                                      (f: (A0, A1, A2) => R): Interface = new Interface {
+                                                                         (f: (A0, A1, A2) => R): Interface = new Interface {
 
     @varargs def call(args: Any*): Any = {
       try {
@@ -135,7 +135,7 @@ object Interface {
   }
 
   def apply[A0:ArgAdapter, A1:ArgAdapter, A2:ArgAdapter, A3:ArgAdapter, R:GenResAdapter](funName: String, name0: String, name1: String, name2: String, name3: String)
-                                                                                     (f: (A0, A1, A2, A3) => R): Interface = new Interface {
+                                                                                        (f: (A0, A1, A2, A3) => R): Interface = new Interface {
 
     @varargs def call(args: Any*): Any = {
       try {

@@ -7,7 +7,7 @@ import scala.reflect.ClassTag
 /** Exception thrown when adapting the return value of the Scala code, when the result value cannot be represented
   * by the corresponding standard Java type. */
 class ResAdapterException(a: ResAdapter[_, _], res: Any, cause: AdapterException)
-  extends IllegalArgumentException(s"Result cannot be adapted to ${a.name} from $res of class ${res.getClass.getName}", cause)
+  extends IllegalArgumentException(s"Result cannot be adapted to ${a.name} from ${Printer(res)} of class ${res.getClass.getName}", cause)
 
 /** Adapts the result of the Scala code by transforming the return value into a standard Java type. */
 class ResAdapter[-A, +R](val name: String, f: A => R) {
